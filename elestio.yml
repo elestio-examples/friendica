@@ -27,9 +27,9 @@ environments:
   - key: "SMTP_PORT"
     value: "25"
   - key: "SMTP_DOMAIN"
-    value: "[DOMAIN]"
+    value: "vm.elestio.app"
   - key: "SMTP_FROM"
-    value: "[DOMAIN]@vm.elestio.app"
+    value: "[DOMAIN]"
   - key: "SMTP_AUTH"
     value: "Off"
 
