@@ -13,24 +13,17 @@ services:
       - MYSQL_RANDOM_ROOT_PASSWORD=yes
 
   app:
-    image: friendica:fpm
+    image: friendica
     restart: always
     volumes:
-      - ./friendica:/var/www/html    
+      - ./friendica:/var/www/html
+    ports:
+      - "172.17.0.1:7654:80"
     environment:
       - MYSQL_HOST=db
       - MYSQL_USER=friendica
       - MYSQL_PASSWORD=${ADMIN_PASSWORD}
       - MYSQL_DATABASE=friendica
-      - FRIENDICA_ADMIN_MAIL=root@friendica.local
-
-  web:
-    image: nginx
-    ports:
-      - 172.17.0.1:7654:80
-    links:
-      - app
-    volumes:
-      - /opt/elestio/nginx/conf.d/${DOMAIN}.conf:/etc/nginx/nginx.conf:ro
-      # - ./nginx.conf:/etc/nginx/nginx.conf:ro    
-    restart: always
+      - FRIENDICA_ADMIN_MAIL=root@friendica.local      
+    depends_on:
+      - db
