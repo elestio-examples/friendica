@@ -24,6 +24,12 @@ services:
       - MYSQL_USER=friendica
       - MYSQL_PASSWORD=${ADMIN_PASSWORD}
       - MYSQL_DATABASE=friendica
-      - FRIENDICA_ADMIN_MAIL=root@friendica.local      
+      - FRIENDICA_URL=${FRIENDICA_URL}
+      - FRIENDICA_ADMIN_MAIL=${FRIENDICA_ADMIN_MAIL}
+      - SMTP=${SMTP}
+      - SMTP_PORT=${SMTP_PORT}
+      - SMTP_DOMAIN=${SMTP_DOMAIN}
+      - SMTP_FROM=${SMTP_FROM}
+      - SMTP_AUTH=${SMTP_AUTH}
     depends_on:
       - db
