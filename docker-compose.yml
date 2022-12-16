@@ -5,25 +5,31 @@ services:
     image: mariadb
     restart: always
     volumes:
-      - ./db:/var/lib/mysql
+      - db:/var/lib/mysql
     environment:
       - MYSQL_USER=friendica
-      - MYSQL_PASSWORD=
+      - MYSQL_PASSWORD=${ADMIN_PASSWORD}
       - MYSQL_DATABASE=friendica
       - MYSQL_RANDOM_ROOT_PASSWORD=yes
 
   app:
-    image: friendica
+    image: friendica:fpm
     restart: always
     volumes:
-      - ./friendica:/var/www/html
-    ports:
-      - "172.17.0.1:7654:80"
+      - friendica:/var/www/html    
     environment:
       - MYSQL_HOST=db
       - MYSQL_USER=friendica
-      - MYSQL_PASSWORD=
+      - MYSQL_PASSWORD=${ADMIN_PASSWORD}
       - MYSQL_DATABASE=friendica
-      - FRIENDICA_ADMIN_MAIL=root@friendica.local      
-    depends_on:
-      - db
+      - FRIENDICA_ADMIN_MAIL=root@friendica.local
+
+  web:
+    image: nginx
+    ports:
+      - 172.17.0.1:7654:80
+    links:
+      - app
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro    
+    restart: always
