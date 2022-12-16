@@ -8,14 +8,6 @@ ports:
     path: "/"
     isAuth: false
 environments:
-  - key: SOFTWARE_VERSION_TAG
-    value: "lts-jdk11"
-  - key: JENKINS_USERNAME
-    value: "root"
-  - key: JENKINS_PASSWORD
-    value: "random_password"
-  - key: "JENKINS_EMAIL"
-    value: "[EMAIL]"
   - key: "ADMIN_PASSWORD"
     value: "random_password"
   - key: "FRIENDICA_URL"
@@ -41,7 +33,7 @@ config:
   buildDir: "/"
   runCommand: "docker-compose up -d"
   icon: ""
-  screenshot: "jenkins.jpg"
+  screenshot: "friendica.png"
 lifeCycleConfig:
   preInstallCommand: "./scripts/preInstall.sh"
   postInstallCommand: "./scripts/postInstall.sh"
@@ -51,6 +43,3 @@ lifeCycleConfig:
   postRestoreCommand: "./scripts/postRestore.sh"
 webUI:
   - url: "https://[CI_CD_DOMAIN]"
-    label: "Jenkins Admin"
-    login: "root"
-    password: "[ADMIN_PASSWORD]"
