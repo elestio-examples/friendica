@@ -24,6 +24,8 @@ environments:
     value: "[DOMAIN]"
   - key: "SMTP_AUTH"
     value: "Off"
+  - key: "CI_CD_DOMAIN"
+    value: "[CI_CD_DOMAIN]"
 
 config:
   runTime: "dockerCompose"
