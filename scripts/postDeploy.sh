@@ -1,8 +1,7 @@
 # set env vars
-# set -o allexport; source .env; set +o allexport;
+set -o allexport; source .env; set +o allexport;
 
-# sleep 20s;
+echo "Waiting for Friendica to be ready..."
+sleep 30s;
 
-# sed -i 's@location / {@location / {\n\nsub_filter "http://"  "https://";\nsub_filter_once off;\n\n@g' /opt/elestio/nginx/conf.d/${CI_CD_DOMAIN}.conf
-
-# docker exec elestio-nginx nginx -s reload;
+sed -i "s@'ssl_policy' => 2,@'ssl_policy' => 1,@g" ./friendica/config/local.config.php
