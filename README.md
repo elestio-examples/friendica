@@ -10,7 +10,7 @@ Deploy Friendica server with CI/CD on Elestio
 
 # Once deployed ...
 
-You must register with this email address: [EMAIL] to create an admin access in this URL:
+You have to register with this email address: [EMAIL] to create an admin access in this URL:
 
     URL: https://[CI_CD_DOMAIN]
 
