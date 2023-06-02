@@ -26,7 +26,8 @@ environments:
     value: "Off"
   - key: "CI_CD_DOMAIN"
     value: "[CI_CD_DOMAIN]"
-
+  - key: "SOFTWARE_VERSION_TAG"
+    value: "stable"
 config:
   runTime: "dockerCompose"
   version: ""
