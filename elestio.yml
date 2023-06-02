@@ -47,3 +47,4 @@ lifeCycleConfig:
   postDeployCommand: "./scripts/postDeploy.sh"
 webUI:
   - url: "https://[CI_CD_DOMAIN]"
+    label: "Admin URL"
