@@ -1,0 +1,35 @@
+version: '3.3'
+
+services:
+  db:
+    image: mariadb
+    restart: always
+    volumes:
+      - ./db:/var/lib/mysql
+    environment:
+      - MYSQL_USER=friendica
+      - MYSQL_PASSWORD=${ADMIN_PASSWORD}
+      - MYSQL_DATABASE=friendica
+      - MYSQL_RANDOM_ROOT_PASSWORD=yes
+
+  app:
+    image: friend:${SOFTWARE_VERSION_TAG}
+    restart: always
+    volumes:
+      - ./friendica:/var/www/html
+    ports:
+      - "172.17.0.1:7654:80"
+    environment:
+      - MYSQL_HOST=db
+      - MYSQL_USER=friendica
+      - MYSQL_PASSWORD=${ADMIN_PASSWORD}
+      - MYSQL_DATABASE=friendica
+      - FRIENDICA_URL=${FRIENDICA_URL}
+      - FRIENDICA_ADMIN_MAIL=${FRIENDICA_ADMIN_MAIL}
+      - SMTP=${SMTP}
+      - SMTP_PORT=${SMTP_PORT}
+      - SMTP_DOMAIN=${SMTP_DOMAIN}
+      - SMTP_FROM=${SMTP_FROM}
+      - SMTP_AUTH=${SMTP_AUTH}
+    depends_on:
+      - db
