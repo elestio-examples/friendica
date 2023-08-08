@@ -60,9 +60,9 @@ Here are some example snippets to help you get started creating a container.
         volumes:
         - ./db:/var/lib/mysql
         environment:
-        - MYSQL_USER=friendica
-        - MYSQL_PASSWORD=${ADMIN_PASSWORD}
-        - MYSQL_DATABASE=friendica
+        - MYSQL_USER=${MYSQL_USER}
+        - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+        - MYSQL_DATABASE=${MYSQL_DATABASE}
         - MYSQL_RANDOM_ROOT_PASSWORD=yes
 
     app:
@@ -73,10 +73,10 @@ Here are some example snippets to help you get started creating a container.
         ports:
         - "172.17.0.1:7654:80"
         environment:
-        - MYSQL_HOST=db
-        - MYSQL_USER=friendica
-        - MYSQL_PASSWORD=${ADMIN_PASSWORD}
-        - MYSQL_DATABASE=friendica
+        - MYSQL_HOST=${MYSQL_HOST}
+        - MYSQL_USER=${MYSQL_USER}
+        - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+        - MYSQL_DATABASE=${MYSQL_DATABASE}
         - FRIENDICA_URL=${FRIENDICA_URL}
         - FRIENDICA_ADMIN_MAIL=${FRIENDICA_ADMIN_MAIL}
         - SMTP=${SMTP}
@@ -87,7 +87,22 @@ Here are some example snippets to help you get started creating a container.
         depends_on:
         - db
 
+### Environment variables
 
+|       Variable       |  Value (example)   |
+| :------------------: | :----------------: |
+| SOFTWARE_VERSION_TAG |       latest       |
+|    FRIENDICA_URL     | https://yourdomain |
+| FRIENDICA_ADMIN_MAIL |   admin@test.com   |
+|      MYSQL_HOST      |    db-host-name    |
+|      MYSQL_USER      |      db-user       |
+|    MYSQL_PASSWORD    |      db-pass       |
+|    MYSQL_DATABASE    |      db-name       |
+|         SMTP         |    smtp.server     |
+|      SMTP_PORT       |         25         |
+|     SMTP_DOMAIN      |    smtp.domain     |
+|      SMTP_FROM       |  smtp.from.domian  |
+|      SMTP_AUTH       |        off         |
 
 # Maintenance
 
