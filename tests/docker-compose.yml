@@ -1,35 +1,33 @@
-version: "3.3"
+version: '3.2'
 
 services:
   db:
     image: mariadb
     restart: always
     volumes:
-      - ./db:/var/lib/mysql
+      - db:/var/lib/mysql
     environment:
-      - MYSQL_USER=${MYSQL_USER}
-      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
-      - MYSQL_DATABASE=${MYSQL_DATABASE}
-      - MYSQL_RANDOM_ROOT_PASSWORD=yes
+      - MYSQL_USER=friendica
+      - MYSQL_PASSWORD=friendica
+      - MYSQL_DATABASE=friendica
+      - MYSQL_ROOT_PASSWORD=test@1234
 
   app:
-    image: friend:${SOFTWARE_VERSION_TAG}
+    image: elestio4test/friendica:${SOFTWARE_VERSION_TAG}
     restart: always
     volumes:
-      - ./friendica:/var/www/html
+      - friendica:/var/www/html
     ports:
-      - "172.17.0.1:7654:80"
+      - "172.17.0.1:8080:80"
     environment:
-      - MYSQL_HOST=${MYSQL_HOST}
-      - MYSQL_USER=${MYSQL_USER}
-      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
-      - MYSQL_DATABASE=${MYSQL_DATABASE}
-      - FRIENDICA_URL=${FRIENDICA_URL}
-      - FRIENDICA_ADMIN_MAIL=${FRIENDICA_ADMIN_MAIL}
-      - SMTP=${SMTP}
-      - SMTP_PORT=${SMTP_PORT}
-      - SMTP_DOMAIN=${SMTP_DOMAIN}
-      - SMTP_FROM=${SMTP_FROM}
-      - SMTP_AUTH=${SMTP_AUTH}
+      - MYSQL_HOST=db
+      - MYSQL_USER=friendica
+      - MYSQL_PASSWORD=friendica
+      - MYSQL_DATABASE=friendica
+      - FRIENDICA_ADMIN_MAIL=root@friendica.local      
     depends_on:
       - db
+
+volumes:
+  db:
+  friendica:
