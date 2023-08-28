@@ -7,10 +7,10 @@ services:
     volumes:
       - db:/var/lib/mysql
     environment:
-      - MYSQL_USER=friendica
-      - MYSQL_PASSWORD=friendica
-      - MYSQL_DATABASE=friendica
-      - MYSQL_ROOT_PASSWORD=test@1234
+      - MYSQL_USER=${MYSQL_USER}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+      - MYSQL_DATABASE=${MYSQL_DATABASE}
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
 
   app:
     image: elestio4test/friendica:${SOFTWARE_VERSION_TAG}
@@ -18,13 +18,13 @@ services:
     volumes:
       - friendica:/var/www/html
     ports:
-      - "172.17.0.1:8080:80"
+      - "172.17.0.1:7654:80"
     environment:
-      - MYSQL_HOST=db
-      - MYSQL_USER=friendica
-      - MYSQL_PASSWORD=friendica
-      - MYSQL_DATABASE=friendica
-      - FRIENDICA_ADMIN_MAIL=root@friendica.local      
+      - MYSQL_HOST=${MYSQL_HOST}
+      - MYSQL_USER=${MYSQL_USER}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+      - MYSQL_DATABASE=${MYSQL_DATABASE}
+      - FRIENDICA_ADMIN_MAIL=${FRIENDICA_ADMIN_MAIL}
     depends_on:
       - db
 
