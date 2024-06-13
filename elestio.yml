@@ -28,6 +28,8 @@ environments:
     value: "[CI_CD_DOMAIN]"
   - key: "SOFTWARE_VERSION_TAG"
     value: "2023.05"
+  - key: "IP"
+    value: "[IP]"
 config:
   runTime: "dockerCompose"
   version: ""
